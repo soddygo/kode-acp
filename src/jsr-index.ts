@@ -42,6 +42,9 @@ export {
   processManager
 } from './process-manager.ts';
 
+// Re-export event emitter
+export { EventEmitter } from './event-emitter.ts';
+
 // Lazy import for HTTP server (only when needed)
 export async function getHttpServer(): Promise<any> {
   try {

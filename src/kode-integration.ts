@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from './event-emitter.ts';
 import { KodeToolCall, KodeToolResult, KodeACPConfig } from './types.ts';
 import { log } from './utils.ts';
 import {
