@@ -1,5 +1,5 @@
-import { KodeACPConfig } from './types.js';
-import { log } from './utils.js';
+import { KodeACPConfig } from './types.ts';
+import { log } from './utils.ts';
 
 export interface ModelProfile {
   name: string;

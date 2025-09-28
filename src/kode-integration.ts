@@ -1,7 +1,7 @@
 import { spawn, ChildProcess } from 'child_process';
 import { EventEmitter } from 'events';
-import { KodeToolCall, KodeToolResult, KodeACPConfig } from './types.js';
-import { log } from './utils.js';
+import { KodeToolCall, KodeToolResult, KodeACPConfig } from './types.ts';
+import { log } from './utils.ts';
 
 export class KodeIntegration extends EventEmitter {
   private config: KodeACPConfig;

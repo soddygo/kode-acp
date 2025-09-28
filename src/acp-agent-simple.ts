@@ -1,8 +1,8 @@
 import { v7 as uuidv7 } from 'uuid';
-import { KodeIntegration } from './kode-integration.js';
-import { MultiModelManager } from './multi-model.js';
-import { KodeACPConfig, KodeSession, KodeToolCall } from './types.js';
-import { log, generateSessionId } from './utils.js';
+import { KodeIntegration } from './kode-integration.ts';
+import { MultiModelManager } from './multi-model.ts';
+import { KodeACPConfig, KodeSession, KodeToolCall } from './types.ts';
+import { log, generateSessionId } from './utils.ts';
 
 export interface SimpleACPMessage {
   type: string;

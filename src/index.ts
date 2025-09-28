@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { createServer } from 'http';
-import { KodeAcpAgentSimple, SimpleACPMessage, SimpleACPConnection } from './acp-agent-simple.js';
-import { KodeACPConfig } from './types.js';
-import { log } from './utils.js';
+import { KodeAcpAgentSimple, SimpleACPMessage, SimpleACPConnection } from './acp-agent-simple.ts';
+import { KodeACPConfig } from './types.ts';
+import { log } from './utils.ts';
 import { parseArgs } from 'node:util';
 
 // Redirect console.log to stderr to avoid interfering with ACP protocol
@@ -231,7 +231,7 @@ async function runHttpServer(port: string) {
 function getRequestBody(req: any): Promise<string> {
   return new Promise((resolve, reject) => {
     let body = '';
-    req.on('data', (chunk: Buffer) => {
+    req.on('data', (chunk: any) => {
       body += chunk.toString();
     });
     req.on('end', () => {

@@ -5,8 +5,12 @@ import { TextDecoder, TextEncoder } from 'util';
 export function nodeToWebReadable(nodeStream: Readable): ReadableStream<Uint8Array> {
   return new ReadableStream({
     start(controller) {
-      nodeStream.on('data', (chunk) => {
-        controller.enqueue(chunk instanceof Buffer ? chunk : new TextEncoder().encode(chunk));
+      nodeStream.on('data', (chunk: any) => {
+        if (chunk instanceof Uint8Array) {
+          controller.enqueue(chunk);
+        } else {
+          controller.enqueue(new TextEncoder().encode(chunk.toString()));
+        }
       });
       nodeStream.on('end', () => {
         controller.close();
