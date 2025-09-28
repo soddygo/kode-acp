@@ -1,7 +1,7 @@
 {
   "name": "@soddygo/kode-acp",
   "version": "0.1.0",
-  "exports": "./src/index.ts",
+  "exports": "./src/jsr-index.ts",
   "include": ["src/**/*", "README.md", "LICENSE"],
   "exclude": ["node_modules", "dist", "scripts", "jsr.json", "mod.ts", "tsconfig.json", "package.json", "package-lock.json", "PUBLISHING.md"],
   "compilerOptions": {
