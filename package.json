@@ -1,5 +1,5 @@
 {
-  "name": "kode-acp",
+  "name": "@soddygo/kode-acp",
   "version": "0.1.0",
   "description": "An ACP-compatible coding agent powered by Kode (TypeScript)",
   "main": "dist/index.js",

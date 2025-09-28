@@ -1,5 +1,5 @@
 {
-  "name": "@kode/acp",
+  "name": "@soddygo/kode-acp",
   "version": "0.1.0",
   "exports": "./src/index.ts",
   "include": [

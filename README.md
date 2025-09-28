@@ -45,16 +45,16 @@ Install the adapter using JSR (recommended for TypeScript projects):
 
 ```bash
 # npm
-npm install @kode/acp
+npm install @soddygo/kode-acp
 
 # yarn
-yarn add @kode/acp
+yarn add @soddygo/kode-acp
 
 # pnpm
-pnpm add @kode/acp
+pnpm add @soddygo/kode-acp
 
 # Deno
-deno add jsr:@kode/acp
+deno add jsr:@soddygo/kode-acp
 ```
 
 #### GitHub Releases
