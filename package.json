@@ -22,7 +22,9 @@
     "publish:beta": "npm publish --tag beta",
     "publish:dry-run": "npm publish --dry-run",
     "publish:auto": "node scripts/publish.js",
-    "publish:check": "node scripts/check-publish.js"
+    "publish:check": "node scripts/check-publish.js",
+    "publish:jsr": "npx jsr publish",
+    "publish:jsr:dry-run": "npx jsr publish --dry-run"
   },
   "keywords": [
     "kode",

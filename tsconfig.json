@@ -9,12 +9,15 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
+    "declarationMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "sourceMap": true,
     "resolveJsonModule": true,
-    "noEmit": false
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*", "jsr/index.ts"],
+  "exclude": ["node_modules", "dist", "scripts"]
 }

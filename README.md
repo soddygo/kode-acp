@@ -37,6 +37,24 @@ Install the adapter using Deno:
 deno install --allow-read --allow-write --allow-net --allow-env --allow-run --allow-sys -n kode-acp https://deno.land/x/kode-acp/mod.ts
 ```
 
+#### JSR (JavaScript Registry)
+
+Install the adapter using JSR (recommended for TypeScript projects):
+
+```bash
+# npm
+npm install @kode/acp
+
+# yarn
+yarn add @kode/acp
+
+# pnpm
+pnpm add @kode/acp
+
+# Deno
+deno add jsr:@kode/acp
+```
+
 #### GitHub Releases
 
 Download pre-built binaries from the [GitHub Releases](https://github.com/your-username/kode-acp/releases) page.
@@ -122,6 +140,24 @@ npm run publish:beta   # for beta releases
 npm run publish:next   # for next releases
 ```
 
+### JSR Publishing
+
+To publish to JSR (JavaScript Registry):
+
+```bash
+# Install JSR CLI
+npm install -g jsr
+
+# Login to JSR
+jsr login
+
+# Dry run to test
+npm run publish:jsr:dry-run
+
+# Publish to JSR
+npm run publish:jsr
+```
+
 ### Deno Publishing
 
 To publish to Deno:
@@ -136,14 +172,15 @@ deno publish --allow-scratch
 
 ### Manual Publishing Steps
 
-1. **Update version in package.json**
+1. **Update version in package.json and jsr.json**
 2. **Build the project**: `npm run build`
 3. **Run tests and checks**: `npm run check`
 4. **Commit changes**: `git commit -m "Release v0.1.0"`
 5. **Create tag**: `git tag v0.1.0`
 6. **Push to GitHub**: `git push && git push --tags`
 7. **Publish to npm**: `npm publish`
-8. **Publish to Deno**: `deno publish --allow-scratch`
+8. **Publish to JSR**: `npm run publish:jsr`
+9. **Publish to Deno**: `deno publish --allow-scratch`
 
 ## License
 
