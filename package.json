@@ -44,18 +44,18 @@
     "vscode"
   ],
   "author": {
-    "name": "Kode ACP Adapter",
-    "email": "your-email@example.com",
-    "url": "https://github.com/your-username/kode-acp"
+    "name": "soddygo",
+    "email": "soddygo@example.com",
+    "url": "https://github.com/soddygo/kode-acp"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/kode-acp.git"
+    "url": "git+https://github.com/soddygo/kode-acp.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/kode-acp/issues"
+    "url": "https://github.com/soddygo/kode-acp/issues"
   },
-  "homepage": "https://github.com/your-username/kode-acp#readme",
+  "homepage": "https://github.com/soddygo/kode-acp#readme",
   "license": "Apache-2.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.1",

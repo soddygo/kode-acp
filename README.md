@@ -2,6 +2,8 @@
 
 Use [Kode](https://github.com/shareAI-lab/kode) from [ACP-compatible](https://agentclientprotocol.com) clients such as [Zed](https://zed.dev)!
 
+**Repository**: https://github.com/soddygo/kode-acp
+
 This tool implements an ACP agent by using Kode's tool system, supporting:
 
 - Context @-mentions
@@ -57,12 +59,12 @@ deno add jsr:@kode/acp
 
 #### GitHub Releases
 
-Download pre-built binaries from the [GitHub Releases](https://github.com/your-username/kode-acp/releases) page.
+Download pre-built binaries from the [GitHub Releases](https://github.com/soddygo/kode-acp/releases) page.
 
 #### Build from source
 
 ```bash
-git clone https://github.com/your-username/kode-acp.git
+git clone https://github.com/soddygo/kode-acp.git
 cd kode-acp
 npm install
 npm run build

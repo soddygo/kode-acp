@@ -13,8 +13,8 @@ This guide explains how to publish kode-acp to npm and Deno registries.
 ### 1. Configure Git Remote
 
 ```bash
-# Replace with your actual repository URL
-git remote add origin https://github.com/your-username/kode-acp.git
+# Add your repository URL
+git remote add origin https://github.com/soddygo/kode-acp.git
 git push -u origin main
 ```
 
@@ -30,13 +30,13 @@ npm whoami
 
 ### 3. Update package.json
 
-Make sure to update the following fields in `package.json`:
+Make sure the following fields in `package.json` are correctly set:
 
-- `author.email`: Your actual email
-- `author.url`: Your actual GitHub URL
-- `repository.url`: Your actual repository URL
-- `bugs.url`: Your actual issues URL
-- `homepage`: Your actual project homepage
+- `author.email`: Your actual email (currently: soddygo@example.com)
+- `author.url`: Your GitHub URL (currently: https://github.com/soddygo/kode-acp)
+- `repository.url`: Your repository URL (currently: git+https://github.com/soddygo/kode-acp.git)
+- `bugs.url`: Your issues URL (currently: https://github.com/soddygo/kode-acp/issues)
+- `homepage`: Your project homepage (currently: https://github.com/soddygo/kode-acp#readme)
 
 ## Publishing Process
 
@@ -175,4 +175,5 @@ If you encounter any issues during publishing:
 
 1. Check the [npm documentation](https://docs.npmjs.com/)
 2. Check the [Deno publishing guide](https://deno.land/manual@v1.40.0/publishing)
-3. Create an issue in the GitHub repository
+3. Check the [JSR documentation](https://jsr.io/docs)
+4. Create an issue in the [GitHub repository](https://github.com/soddygo/kode-acp/issues)
