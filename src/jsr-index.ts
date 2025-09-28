@@ -45,6 +45,37 @@ export {
 // Re-export event emitter
 export { EventEmitter } from './event-emitter.ts';
 
+// Re-export stream utilities
+export {
+  StreamConverter,
+  StreamHelpers,
+  StreamError,
+  StreamValidator,
+} from './stream-utils.ts';
+
+// Re-export tool converter
+export {
+  ACPToolConverter,
+  ToolPermissionManager,
+  defaultToolConverter,
+} from './tool-converter.ts';
+export type {
+  ToolPermission,
+  PermissionMode,
+  ToolMapping,
+  ToolConverter,
+} from './tool-converter.ts';
+
+// Re-export session manager
+export {
+  SessionManager,
+  sessionManager,
+  SessionUtils,
+  type SessionConfig,
+  type SessionState,
+  type SessionEvent,
+} from './session-manager.ts';
+
 // Lazy import for HTTP server (only when needed)
 export async function getHttpServer(): Promise<any> {
   try {
