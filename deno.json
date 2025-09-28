@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "exports": "./src/jsr-index.ts",
   "include": ["src/**/*", "README.md", "LICENSE"],
-  "exclude": ["node_modules", "dist", "scripts", "jsr.json", "mod.ts", "tsconfig.json", "package.json", "package-lock.json", "PUBLISHING.md"],
+  "exclude": ["node_modules", "dist", "scripts", "jsr.json", "mod.ts", "tsconfig.json", "package.json", "package-lock.json", "PUBLISHING.md", "src/index.ts"],
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext", "deno.ns"]
   },

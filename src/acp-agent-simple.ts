@@ -1,4 +1,3 @@
-import { v7 as uuidv7 } from 'uuid';
 import { KodeIntegration } from './kode-integration.ts';
 import { MultiModelManager } from './multi-model.ts';
 import { KodeACPConfig, KodeSession, KodeToolCall } from './types.ts';
@@ -168,7 +167,7 @@ export class KodeAcpAgentSimple {
       const kodeToolCall: KodeToolCall = {
         name: toolCall.name,
         input: toolCall.input,
-        id: toolCall.id || uuidv7(),
+        id: toolCall.id || generateSessionId(),
       };
 
       // Execute the tool
