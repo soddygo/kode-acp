@@ -32,7 +32,7 @@ export function nodeToWebReadable(nodeStream: any): ReadableStream<Uint8Array> {
           nodeStream.on('end', () => {
             controller.close();
           });
-          nodeStream.on('error', (error) => {
+          nodeStream.on('error', (error: any) => {
             controller.error(error);
           });
         },
