@@ -71,19 +71,41 @@ export function createStdioConnection(): SimpleACPConnection {
     },
 
     async *receive(): AsyncIterable<SimpleACPMessage> {
-      const readline = await import('readline');
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        terminal: false,
-      });
+      // Try to use Node.js readline if available
+      try {
+        const readline = await import('readline');
+        const rl = readline.createInterface({
+          input: process.stdin,
+          output: process.stdout,
+          terminal: false,
+        });
 
-      for await (const line of rl) {
-        try {
-          const message: SimpleACPMessage = JSON.parse(line);
-          yield message;
-        } catch (error) {
-          log('error', 'Failed to parse message:', error);
+        for await (const line of rl) {
+          try {
+            const message: SimpleACPMessage = JSON.parse(line);
+            yield message;
+          } catch (error) {
+            log('error', 'Failed to parse message:', error);
+          }
+        }
+      } catch {
+        // Fallback for Deno or other environments
+        const decoder = new TextDecoder();
+        const buffer = new Uint8Array(1024);
+
+        while (true) {
+          const n = await Deno.stdin.read(buffer);
+          if (n === null) break;
+
+          const line = decoder.decode(buffer.subarray(0, n)).trim();
+          if (line) {
+            try {
+              const message: SimpleACPMessage = JSON.parse(line);
+              yield message;
+            } catch (error) {
+              log('error', 'Failed to parse message:', error);
+            }
+          }
         }
       }
     },
@@ -115,7 +137,11 @@ export async function runKodeAcp(config?: KodeACPConfig): Promise<void> {
     }
   } catch (error) {
     log('error', 'Kode ACP agent failed:', error);
-    process.exit(1);
+    if (typeof process !== 'undefined') {
+      process.exit(1);
+    } else {
+      Deno.exit(1);
+    }
   }
 }
 
