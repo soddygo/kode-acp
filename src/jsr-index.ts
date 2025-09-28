@@ -33,6 +33,15 @@ export {
   joinPaths
 } from './utils.ts';
 
+// Re-export process management utilities
+export {
+  ProcessManager,
+  executeCommand,
+  spawnProcess,
+  isCommandAvailable,
+  processManager
+} from './process-manager.ts';
+
 // Lazy import for HTTP server (only when needed)
 export async function getHttpServer(): Promise<any> {
   try {

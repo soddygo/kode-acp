@@ -1,22 +1,30 @@
-import { spawn, ChildProcess } from 'child_process';
 import { EventEmitter } from 'events';
 import { KodeToolCall, KodeToolResult, KodeACPConfig } from './types.ts';
 import { log } from './utils.ts';
+import {
+  CrossPlatformProcess,
+  executeCommand,
+  spawnProcess,
+  isCommandAvailable,
+  ProcessManager
+} from './process-manager.ts';
 
 export class KodeIntegration extends EventEmitter {
   private config: KodeACPConfig;
-  private kodeProcess: ChildProcess | null = null;
+  private kodeProcess: CrossPlatformProcess | null = null;
   private pendingRequests: Map<string, { resolve: Function; reject: Function }> = new Map();
   private initialized: boolean = false;
+  private processManager: ProcessManager;
 
   constructor(config: KodeACPConfig) {
     super();
     this.config = {
-      workingDirectory: process.cwd(),
+      workingDirectory: typeof process !== 'undefined' ? process.cwd() : (globalThis as any).Deno?.cwd() || '.',
       permissionMode: 'yolo',
       logLevel: 'info',
       ...config,
     };
+    this.processManager = ProcessManager.getInstance();
   }
 
   async initialize(): Promise<void> {
@@ -26,10 +34,8 @@ export class KodeIntegration extends EventEmitter {
 
     try {
       // Check if kode is installed
-      const { execSync } = await import('child_process');
-      try {
-        execSync('kode --version', { stdio: 'pipe' });
-      } catch (error) {
+      const kodeAvailable = await isCommandAvailable('kode');
+      if (!kodeAvailable) {
         throw new Error('Kode is not installed or not in PATH. Please install Kode first.');
       }
 
@@ -149,51 +155,35 @@ export class KodeIntegration extends EventEmitter {
         }
 
       case 'Bash':
-        return new Promise((resolve) => {
-          const child = spawn(input.command, [], {
-            shell: true,
+        try {
+          const result = await executeCommand(input.command, {
             cwd: this.config.workingDirectory,
-            stdio: ['pipe', 'pipe', 'pipe'],
+            shell: true,
           });
 
-          let stdout = '';
-          let stderr = '';
-
-          child.stdout?.on('data', (data) => {
-            stdout += data.toString();
-          });
-
-          child.stderr?.on('data', (data) => {
-            stderr += data.toString();
-          });
-
-          child.on('close', (code) => {
-            if (code === 0) {
-              resolve({
-                type: 'tool_result',
-                content: stdout || stderr,
-                tool_use_id: toolCall.id || '',
-                is_error: false,
-              });
-            } else {
-              resolve({
-                type: 'tool_result',
-                content: `Command failed with exit code ${code}: ${stderr}`,
-                tool_use_id: toolCall.id || '',
-                is_error: true,
-              });
-            }
-          });
-
-          child.on('error', (error) => {
-            resolve({
+          if (result.exitCode === 0) {
+            return {
               type: 'tool_result',
-              content: `Command execution failed: ${error.message}`,
+              content: result.stdout || result.stderr,
+              tool_use_id: toolCall.id || '',
+              is_error: false,
+            };
+          } else {
+            return {
+              type: 'tool_result',
+              content: `Command failed with exit code ${result.exitCode}: ${result.stderr}`,
               tool_use_id: toolCall.id || '',
               is_error: true,
-            });
-          });
-        });
+            };
+          }
+        } catch (error) {
+          return {
+            type: 'tool_result',
+            content: `Command execution failed: ${error instanceof Error ? error.message : String(error)}`,
+            tool_use_id: toolCall.id || '',
+            is_error: true,
+          };
+        }
 
       case 'Glob':
         try {
@@ -263,6 +253,9 @@ export class KodeIntegration extends EventEmitter {
       this.kodeProcess.kill();
       this.kodeProcess = null;
     }
+
+    // Clean up all processes managed by the process manager
+    await this.processManager.killAllProcesses();
 
     // Clear pending requests
     for (const [requestId, { reject }] of this.pendingRequests) {
