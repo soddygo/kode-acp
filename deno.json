@@ -5,7 +5,17 @@
   "include": ["src/**/*", "README.md", "LICENSE"],
   "exclude": ["node_modules", "dist", "scripts", "jsr.json", "mod.ts", "tsconfig.json", "package.json", "package-lock.json", "PUBLISHING.md", "src/index.ts"],
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext", "deno.ns"]
+    "lib": ["dom", "dom.iterable", "esnext", "deno.ns"],
+    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler"
+  },
+  "tasks": {
+    "build": "deno compile --allow-read --allow-run --allow-net --allow-env --allow-write --output ./dist/kode-acp src/jsr-index.ts",
+    "build:lite": "deno compile --allow-read --allow-run --allow-net --allow-env --output ./dist/kode-acp-lite src/jsr-index.ts",
+    "type-check": "deno check src/jsr-index.ts",
+    "clean": "rm -rf dist/kode-acp*"
   },
   "lint": {
     "rules": {

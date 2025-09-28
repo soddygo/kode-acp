@@ -57,7 +57,7 @@ export class ProcessManager {
 
     try {
       // Try to use Deno's command API if available
-      if (typeof globalThis.Deno !== 'undefined') {
+      if (typeof (globalThis as any).Deno !== 'undefined') {
         return await this.executeWithDeno(command, { cwd, timeout });
       }
 
@@ -80,7 +80,7 @@ export class ProcessManager {
   ): Promise<CrossPlatformProcess> {
     try {
       // Try to use Deno's command API if available
-      if (typeof globalThis.Deno !== 'undefined') {
+      if (typeof (globalThis as any).Deno !== 'undefined') {
         return await this.spawnWithDeno(command, args, options);
       }
 
