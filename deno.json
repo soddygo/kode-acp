@@ -1,0 +1,46 @@
+{
+  "name": "kode-acp",
+  "version": "0.1.0",
+  "exports": "./dist/index.js",
+  "tasks": {
+    "build": "deno run --allow-read --allow-write --allow-net --allow-env --allow-run npm:typescript --tsc",
+    "start": "deno run --allow-read --allow-write --allow-net --allow-env --allow-run --allow-sys dist/index.js",
+    "dev": "deno task build && deno task start",
+    "publish": "deno publish --allow-scratch"
+  },
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "lint": {
+    "rules": {
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo", "camelcase", "no-unused-vars"],
+      "exclude": ["no-console"]
+    }
+  },
+  "fmt": {
+    "options": {
+      "lineWidth": 80,
+      "indentWidth": 2,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  }
+}

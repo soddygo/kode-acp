@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/soddy/Documents/kayak-project/Kode/**)",
+      "Read(//Volumes/soddy/git_workspace/claude-code-acp/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

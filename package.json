@@ -1,0 +1,83 @@
+{
+  "name": "kode-acp",
+  "version": "0.1.0",
+  "description": "An ACP-compatible coding agent powered by Kode (TypeScript)",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "kode-acp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "npm run build && npm run start",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run format:check",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build",
+    "publish:next": "npm publish --tag next",
+    "publish:beta": "npm publish --tag beta",
+    "publish:dry-run": "npm publish --dry-run",
+    "publish:auto": "node scripts/publish.js",
+    "publish:check": "node scripts/check-publish.js"
+  },
+  "keywords": [
+    "kode",
+    "acp",
+    "agent",
+    "typescript",
+    "ai",
+    "code",
+    "coding-assistant",
+    "llm",
+    "claude",
+    "gpt",
+    "mcp",
+    "agent-client-protocol",
+    "zed",
+    "emacs",
+    "vscode"
+  ],
+  "author": {
+    "name": "Kode ACP Adapter",
+    "email": "your-email@example.com",
+    "url": "https://github.com/your-username/kode-acp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/kode-acp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/kode-acp/issues"
+  },
+  "homepage": "https://github.com/your-username/kode-acp#readme",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.1",
+    "@zed-industries/agent-client-protocol": "^0.4.3",
+    "uuid": "^13.0.0",
+    "glob": "^11.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ]
+}
